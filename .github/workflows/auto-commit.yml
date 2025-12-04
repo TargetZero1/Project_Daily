@@ -1,0 +1,37 @@
+name: Auto Commit
+
+on:
+  schedule:
+    # Put in your schedule
+    # At 22:00 (10 PM) on weekdays (Monday through Friday)
+    - cron: "0 22 * * 1-5"
+  workflow_dispatch: # Allows manual trigger anytime
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Configure Git
+        run: |
+          git config user.name "TargetZero1"
+          git config user.email "vijaybrara@gmail.com"
+
+      - name: Make Random Commits
+        run: |
+          num_commits=$(( RANDOM % 11 ))
+          for i in $(seq 1 $num_commits); do
+            timestamp=$(date +%s)
+            echo "Last updated: $i = $timestamp" > last_updated.txt
+            git add last_updated.txt
+            git commit -m "Random commit $i on $(date +%s)"
+          done
+
+      - name: Commit and Push Changes
+        env:
+          GH_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+        run: |
+          git push https://$GH_TOKEN@github.com/TargetZero1/Project_Daily.git
