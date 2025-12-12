@@ -2,10 +2,14 @@ name: Auto Commit
 
 on:
   schedule:
-    # Put in your schedule
-    # At 22:00 (10 PM) on weekdays (Monday through Friday)
-    - cron: "0 22 * * 1-5"
+    # Runs at hours: 8, 11, 14 (2PM), 17 (5PM), 20 (8PM) UTC
+    # You can change these numbers to whatever hours you want
+    - cron: "0 8,11,14,17,20 * * *"
   workflow_dispatch: # Allows manual trigger anytime
+
+# Keep this to fix the Red Error (403) from your screenshot
+permissions:
+  contents: write
 
 jobs:
   commit:
