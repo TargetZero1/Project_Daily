@@ -4,7 +4,7 @@ on:
   schedule:
     # Runs at hours: 8, 11, 14 (2PM), 17 (5PM), 20 (8PM) UTC
     # You can change these numbers to whatever hours you want
-    - cron: "0 1,4,7,10,13 * * *"
+    - cron: "0 1,7,10,13 * * *"
   workflow_dispatch: # Allows manual trigger anytime
 
 # Keep this to fix the Red Error (403) from your screenshot
