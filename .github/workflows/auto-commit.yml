@@ -38,4 +38,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
         run: |
-          git push https://$GH_TOKEN@github.com/TargetZero1/Project_Daily.git
+          git push https://$GH_TOKEN@github.com/TargetZero1/Fishing_Chef.git
